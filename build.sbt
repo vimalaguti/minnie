@@ -1,7 +1,6 @@
 import ReleaseTransformations._
 
 name := "Minnie"
-version := "0.1"
 scalaVersion := "2.13.3"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test"
@@ -19,3 +18,5 @@ releaseProcess := Seq[ReleaseStep](
   commitNextVersion,                      // : ReleaseStep
   pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
   )
+
+assemblyJarName in assembly := s"${name.value}-${version.value}.jar"

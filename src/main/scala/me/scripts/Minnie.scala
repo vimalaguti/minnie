@@ -16,8 +16,8 @@ object Minnie {
                    )
 
   def main(args: Array[String]): Unit = {
-    val parser = new scopt.OptionParser[Config]("scopt") {
-      head("Minnie", "0.1")
+    val parser = new scopt.OptionParser[Config]("minnie") {
+      head("Minnie", "0.2")
 
       opt[File]('s', "src")
         .required()
@@ -60,7 +60,13 @@ object Minnie {
         .optional()
         .action{case (p, c) => c.copy(prefix = p)}
         .text("set the prefix name of subdirectories - eg. <prefix>50-60")
-      // note("some notes.")
+       note(
+         """
+           |Example:
+           |java -jar Minnie-0.1.jar --src images/ --dest out/ --size 50
+           |java -jar Minnie-0.1.jar -s images/ -d out/ -s 50
+           |java -jar Minnie-0.1.jar --src images/ -d out/ --size 30 --move
+           """.stripMargin)
     }
 
     parser.parse(args, Config()) match {
